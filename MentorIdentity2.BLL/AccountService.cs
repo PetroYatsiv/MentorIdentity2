@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MentorIdentity2.BLL
 {
-    class AccountService : IAccountService
+    public class AccountService : IAccountService
     {
     }
 }

@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Home\" />
-    <Folder Include="Views\Account\" />
+    <ProjectReference Include="..\MentorIdentity2.BLL\MentorIdentity2.BLL.csproj" />
+    <ProjectReference Include="..\MentorIdentity2.DAL\MentorIdentity2.DAL.csproj" />
+    <ProjectReference Include="..\MentorIdentity2.DTO\MentorIdentity2.DTO.csproj" />
   </ItemGroup>
 
 </Project>
