@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MentorIdentity2.DAL\MentorIdentity2.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
