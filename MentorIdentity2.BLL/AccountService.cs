@@ -21,10 +21,10 @@ namespace MentorIdentity2.BLL
         }
 
 
-        public async Task<> Register()
-        {
+        //public async Task<> Register()
+        //{
 
-        }
+        //}
 
     }
 }
