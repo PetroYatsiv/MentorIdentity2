@@ -16,5 +16,7 @@ namespace MentorIdentity2.DAL.Models
         public ICollection<Comment> Comments { get; set; }
 
         public Topic Topic { get; set; }
+
+        //since SubTopic has a FK to Topic, add TopicId property
     }
 }

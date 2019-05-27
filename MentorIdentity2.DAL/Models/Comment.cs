@@ -11,5 +11,7 @@ namespace MentorIdentity2.DAL.Models
         public DateTime CommentDate { get; set; }
 
         public SubTopic SubTopic { get; set; }
+
+        //since Comment has a FK to SubTopic, add SubTopicId property
     }
 }

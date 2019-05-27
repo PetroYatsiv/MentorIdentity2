@@ -1,0 +1,7 @@
+Please add anotations for your models. Make them appropriate to your application requirements. 
+For example: comment text cant be null, section description cant be null, etc.
+
+In your models use the same naming conventions.
+For example: In Section model you have a property SectionDescription, but in SubTopic and Topic models you have a property called Description. Which one to choose is up to you.
+
+As I know, only users are able to add Sections, Topics, SubTopics, Comments. Cant find references in these models to user model.
