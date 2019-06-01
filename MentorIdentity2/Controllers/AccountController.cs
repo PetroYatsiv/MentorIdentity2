@@ -30,14 +30,18 @@ namespace MentorIdentity2.Controllers
         {
             if (ModelState.IsValid)
             {
-                AccountService account = new AccountService();
+                RegisterUserDTO registerUserDTO = new RegisterUserDTO();
 
-                User user = new User() {
+                //AccountService account = new AccountService();
+                //var result = account.Register()
+
+                User user = new User()
+                {
                     Email = model.Email,
                     BirthdayDate = model.BirthdayDate,
                     RegistrationDate = DateTime.Now,
-                    NormalizedUserName = "Prtro",
-                UserName = model.Email};
+                    UserName = model.Email
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

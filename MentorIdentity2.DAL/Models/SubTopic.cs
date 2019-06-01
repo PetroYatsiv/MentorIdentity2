@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MentorIdentity2.DAL.Models
@@ -10,11 +11,17 @@ namespace MentorIdentity2.DAL.Models
         {
             Comments = new HashSet<Comment>();
         }
+        [Key]
         public int Id { get; set; }
-        public string Description { get; set; }
+        [Required]
+        public string SubTopicDescription { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-
+        [Required]
         public Topic Topic { get; set; }
+        [Required]
+        public int TopicId { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        [Required]
+        public int IdentityUserId { get; set; }
     }
 }

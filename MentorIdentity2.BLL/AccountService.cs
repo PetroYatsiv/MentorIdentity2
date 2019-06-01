@@ -24,6 +24,7 @@ namespace MentorIdentity2.BLL
         //public async Task<> Register()
         //{
 
+        //    var result = await _userManager.CreateAsync(user, model.Password);
         //}
 
     }
