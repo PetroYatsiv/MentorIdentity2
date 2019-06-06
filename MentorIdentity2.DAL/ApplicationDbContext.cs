@@ -21,7 +21,12 @@ namespace MentorIdentity2.DAL.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Section>.Property(x => x.Id).IsRequir();
+            base.OnModelCreating(builder);
+            builder.Entity<User>().Property(x => x.RegistrationDate).HasColumnType("datetime");
+            builder.Entity<User>().Property(x => x.BirthdayDate).HasColumnType("datetime");
+
+            builder.Entity<Section>().HasKey(x => x.Id);
+            builder.Entity<Section>().Property(x => x.IdentityUserId).IsRequired();
         }
     }
 }

@@ -30,11 +30,6 @@ namespace MentorIdentity2.Controllers
         {
             if (ModelState.IsValid)
             {
-                RegisterUserDTO registerUserDTO = new RegisterUserDTO();
-
-                //AccountService account = new AccountService();
-                //var result = account.Register()
-
                 User user = new User()
                 {
                     Email = model.Email,
@@ -46,6 +41,7 @@ namespace MentorIdentity2.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -65,6 +61,7 @@ namespace MentorIdentity2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)

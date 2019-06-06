@@ -33,7 +33,7 @@ namespace MentorIdentity2
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc();
             services.AddMvc().AddJsonOptions(options => {
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//remove circular referrences
             });
 
             services.TryAddScoped<IAccountService, AccountService>();
