@@ -1,13 +1,14 @@
-﻿@model IEnumerable<MentorIdentity2.DAL.Models.User>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<MentorIdentity2.DAL.Models.User>
 
-@{ 
+@{
     ViewBag.Title = "List of Users";
 }
 
 <a asp-action="Create">Add User</a>
 
 <table>
-    <tr><th>Email</th><th>Year</th><th></th></tr>
+    <tr><th>Email</th><th>Birthday</th><th></th></tr>
     @foreach (var user in Model)
     {
         <tr>

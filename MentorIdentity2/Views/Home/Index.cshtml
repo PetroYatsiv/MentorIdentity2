@@ -1,7 +1,4 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-
-}
 <p>Index page View</p>
 
 @{
@@ -14,7 +11,7 @@
     <p>@User.Identity.Name</p>
 
     <form method="post" asp-controller="Account" asp-action="LogOff">
-        <input type="submit" value="Выход" />
+        <input type="submit" value="Log out" />
     </form>
 }
 else
