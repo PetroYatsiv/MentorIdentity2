@@ -26,6 +26,8 @@ namespace MentorIdentity2.Controllers
             return View(_roleManager.Roles.ToList());
         }
 
+        public IActionResult Create() => View();
+
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -57,6 +59,8 @@ namespace MentorIdentity2.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult UserList() => View(_userManager.Users.ToList());
 
         public async Task<IActionResult> Edit(string userId)
         {
