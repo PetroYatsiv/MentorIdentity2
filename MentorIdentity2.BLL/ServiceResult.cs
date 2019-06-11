@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MentorIdentity2.BLL
+{
+    public class ServiceResult
+    {
+        public ServiceResultStatus Status { get; set; }
+        public string Message { get; set; }
+    }
+
+    public enum ServiceResultStatus
+    {
+        Success,
+        BadRequest,
+        NotFound,
+        ServerError
+    }
+    public class ServiceResult<TResult> : ServiceResult
+    {
+        public TResult Data { get; set; }
+    }
+}
