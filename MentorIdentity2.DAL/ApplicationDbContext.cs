@@ -22,11 +22,11 @@ namespace MentorIdentity2.DAL.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<User>().Property(x => x.RegistrationDate).HasColumnType("datetime");
-            builder.Entity<User>().Property(x => x.BirthdayDate).HasColumnType("datetime");
 
-            builder.Entity<Section>().HasKey(x => x.Id);
-            builder.Entity<Section>().Property(x => x.IdentityUserId).IsRequired();
+            builder.Entity<Section>().HasOne(x => x.User).WithMany(s => s.Sections);
+            builder.Entity<Topic>().HasOne(x => x.User).WithMany(s => s.Topics);
+            builder.Entity<SubTopic>().HasOne(x => x.User).WithMany(s => s.SubTopics);
+            builder.Entity<Comment>().HasOne(x => x.User).WithMany(s => s.Comments);
         }
     }
 }

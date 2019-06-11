@@ -21,13 +21,12 @@ namespace MentorIdentity2.DAL.Models
         public Section Section { get; set; }
         [Required]
         public int SectionId { get; set; }
-
-      
-        
-               
+                       
         public ICollection<SubTopic> SubTopics { get; set; }
-
+       
         [Required]
-        public int IdentityUserId { get; set; }
+        public bool IsActive { get; set; }
+
+        public User User { get; set; }
     }
 }

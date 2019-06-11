@@ -15,8 +15,10 @@ namespace MentorIdentity2.DAL.Models
         public string SectionDescription { get; set; }
 
         public ICollection<Topic> Topics { get; set; }
-
+      
         [Required]
-        public int IdentityUserId { get; set; }
+        public bool IsActive { get; set; }
+
+        public User User { get; set; }
     }
 }

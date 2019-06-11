@@ -21,7 +21,10 @@ namespace MentorIdentity2.DAL.Models
         [Required]
         public int TopicId { get; set; }
         public ICollection<Comment> Comments { get; set; }
+       
         [Required]
-        public int IdentityUserId { get; set; }
+        public bool IsActive { get; set; }
+
+        public User User { get; set; }
     }
 }

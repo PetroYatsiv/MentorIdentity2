@@ -8,17 +8,22 @@ namespace MentorIdentity2.DAL.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string CommentDescription { get; set; }
+
         [Required]
         public DateTime CommentDate { get; set; }
 
         [Required]
         public SubTopic SubTopic { get; set; }
+
         [Required]
         public int SubTopicId { get; set; }
 
         [Required]
-        public int IdentityUserId { get; set; }
+        public bool IsActive { get; set; }
+
+        public User User { get; set; }
     }
 }
