@@ -1,9 +1,11 @@
 ﻿using MentorIdentity2.BLL.Contracts;
 using MentorIdentity2.DAL.Models;
+using MentorIdentity2.DTO.Services.Account;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MentorIdentity2.BLL
 {
@@ -18,14 +20,39 @@ namespace MentorIdentity2.BLL
         {
             _userManager = userManager;
             _signInManager = signInManager;
+
         }
 
+        public async Task<ServiceResult> Register(RegisterUserDTO model)
+        {
+            ServiceResult result = new ServiceResult();
 
-        //public async Task<> Register()
-        //{
+            User user = new User()
+            {
+                Email = model.Email,
+                BirthdayDate = model.BirthdayDate,
+                RegistrationDate = DateTime.Now,
+                UserName = model.Email
+            };
 
-        //    var result = await _userManager.CreateAsync(user, model.Password);
-        //}
+            var createdResult = await _userManager.CreateAsync(user, model.Password);
+
+            if (createdResult.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                result.Status = ServiceResultStatus.Success;
+            }
+            else
+            {
+                foreach (var error in createdResult.Errors)
+                {
+                    var errorDescription = error.Description;
+                    result.Errors.Add(error);
+                }
+
+            }
+            return result;
+        }
 
     }
 }

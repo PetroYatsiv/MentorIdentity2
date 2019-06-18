@@ -24,7 +24,10 @@ namespace MentorIdentity2.Controllers
             return View(_userManager.Users.ToList());
         }
 
+        [HttpGet]
+        public IActionResult Create() => View();
 
+        [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)

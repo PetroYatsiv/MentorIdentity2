@@ -1,10 +1,12 @@
-﻿using MentorIdentity2.BLL;
+﻿using AutoMapper;
+using MentorIdentity2.BLL;
 using MentorIdentity2.DAL.Models;
 using MentorIdentity2.DTO.Services.Account;
 using MentorIdentity2.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MentorIdentity2.Controllers
@@ -13,10 +15,12 @@ namespace MentorIdentity2.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IMapper _mapper;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,17 +34,13 @@ namespace MentorIdentity2.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User()
+                AccountService service = new AccountService(_userManager, _signInManager );
+                RegisterUserDTO transferModel = _mapper.Map<RegisterUserDTO>(model);
+
+                var result = await service.Register(transferModel);
+
+                if (result.Status == ServiceResultStatus.Success)
                 {
-                    Email = model.Email,
-                    BirthdayDate = model.BirthdayDate,
-                    RegistrationDate = DateTime.Now,
-                    UserName = model.Email
-                };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -50,6 +50,27 @@ namespace MentorIdentity2.Controllers
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
+                ////User user = new User()
+                ////{
+                ////    Email = model.Email,
+                ////    BirthdayDate = model.BirthdayDate,
+                ////    RegistrationDate = DateTime.Now,
+                ////    UserName = model.Email
+                ////};
+
+                ////var result = await _userManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                //    await _signInManager.SignInAsync(user, false);
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //else
+                //{
+                //    foreach (var error in result.Errors)
+                //    {
+                //        ModelState.AddModelError(string.Empty, error.Description);
+                //    }
+                //}
             }
             return View(model);
         }
@@ -88,10 +109,14 @@ namespace MentorIdentity2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOff()
+        public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
     }
 }

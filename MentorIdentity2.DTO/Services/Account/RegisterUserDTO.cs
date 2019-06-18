@@ -11,9 +11,4 @@ namespace MentorIdentity2.DTO.Services.Account
         public string PasswordConfirm { get; set; }
         public string Email { get; set; }
     }
-
-    //public RegisterUserDTO ToRegisterDTO(RegisterViewModel model)
-    //{
-
-    //}
 }

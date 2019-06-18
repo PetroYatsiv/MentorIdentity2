@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MentorIdentity2.BLL;
 using MentorIdentity2.BLL.Contracts;
 using MentorIdentity2.DAL.Models;
@@ -31,6 +32,7 @@ namespace MentorIdentity2
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            services.AddAutoMapper();
             services.AddMvc();
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//remove circular referrences
