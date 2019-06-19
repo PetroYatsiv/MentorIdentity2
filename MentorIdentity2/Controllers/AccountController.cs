@@ -35,9 +35,9 @@ namespace MentorIdentity2.Controllers
             if (ModelState.IsValid)
             {
                 AccountService service = new AccountService(_userManager, _signInManager );
-                RegisterUserDTO transferModel = _mapper.Map<RegisterUserDTO>(model);
+                RegisterUserDTO userRegisterModel = _mapper.Map<RegisterUserDTO>(model);
 
-                var result = await service.Register(transferModel);
+                var result = await service.Register(userRegisterModel);
 
                 if (result.Status == ServiceResultStatus.Success)
                 {
@@ -50,27 +50,6 @@ namespace MentorIdentity2.Controllers
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
-                ////User user = new User()
-                ////{
-                ////    Email = model.Email,
-                ////    BirthdayDate = model.BirthdayDate,
-                ////    RegistrationDate = DateTime.Now,
-                ////    UserName = model.Email
-                ////};
-
-                ////var result = await _userManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded)
-                //{
-                //    await _signInManager.SignInAsync(user, false);
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //else
-                //{
-                //    foreach (var error in result.Errors)
-                //    {
-                //        ModelState.AddModelError(string.Empty, error.Description);
-                //    }
-                //}
             }
             return View(model);
         }
@@ -87,8 +66,12 @@ namespace MentorIdentity2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                if (result.Succeeded)
+                AccountService service = new AccountService(_signInManager);
+                LoginUserDTO userLoginModel = _mapper.Map<LoginUserDTO>(model);
+
+                var loginUser = await service.Login(userLoginModel);
+
+                if (loginUser.Status == ServiceResultStatus.Success)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
@@ -109,14 +92,13 @@ namespace MentorIdentity2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> LogOff()
         {
-            await _signInManager.SignOutAsync();
+            AccountService service = new AccountService(_signInManager);
+            service.Logout();            
             return RedirectToAction("Index", "Home");
         }
-
-
-
+        
 
     }
 }

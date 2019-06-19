@@ -13,8 +13,12 @@ namespace MentorIdentity2.BLL
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountService()
+        //public AccountService()
+        //{
+        //}
+        public AccountService(SignInManager<User> signInManager)
         {
+            _signInManager = signInManager;
         }
         public AccountService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -26,7 +30,6 @@ namespace MentorIdentity2.BLL
         public async Task<ServiceResult> Register(RegisterUserDTO model)
         {
             ServiceResult result = new ServiceResult();
-
             User user = new User()
             {
                 Email = model.Email,
@@ -34,7 +37,6 @@ namespace MentorIdentity2.BLL
                 RegistrationDate = DateTime.Now,
                 UserName = model.Email
             };
-
             var createdResult = await _userManager.CreateAsync(user, model.Password);
 
             if (createdResult.Succeeded)
@@ -49,9 +51,27 @@ namespace MentorIdentity2.BLL
                     var errorDescription = error.Description;
                     result.Errors.Add(error);
                 }
-
             }
             return result;
+        }
+
+
+        public async Task<ServiceResult> Login(LoginUserDTO model)
+        {
+            ServiceResult result = new ServiceResult();
+            var logResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            if (logResult.Succeeded)
+            {
+                result.Status = ServiceResultStatus.Success;
+            }
+
+
+            return result;
+        }
+
+        public async void Logout()
+        {
+            await _signInManager.SignOutAsync();
         }
 
     }
