@@ -1,0 +1,11 @@
+﻿@using MentorIdentity2.BLL;
+@using MentorIdentity2.DAL.Models;
+@model ServiceResult<List<Section>>
+@{
+}
+<p>Sections:</p>
+@foreach (var item in Model.Data)
+{
+    <p>@item.SectionDescription</p>
+}
+

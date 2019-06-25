@@ -19,4 +19,8 @@ namespace MentorIdentity2.BLL
         NotFound,
         ServerError
     }
+    public class ServiceResult<TResult> : ServiceResult
+    {
+        public TResult Data { get; set; }
+    }
 }

@@ -39,6 +39,7 @@ namespace MentorIdentity2
             });
 
             services.TryAddScoped<IAccountService, AccountService>();
+            services.TryAddScoped<ISectionService, SectionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
