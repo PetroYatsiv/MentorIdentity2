@@ -23,3 +23,50 @@
         <input type="submit" value="Registration" />
     </div>
 </form>
+
+<main class="login-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Registration</div>
+                    <div class="card-body">
+                        <form asp-action="Register" asp-controller="Account" method="post">
+                            <div class="form-group row">
+                                <label for="BirthdayDate" class="col-md-4 col-form-label text-md-right">Enter Date Of Your Birthday</label>
+                                <div class="col-md-6">
+                                    <input type="date" id="email_address" class="form-control" name="BirthdayDate" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Email" class="col-md-4 col-form-label text-md-right">Enter your email</label>
+                                <div class="col-md-6">
+                                    <input type="email" id="password" class="form-control" name="Email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Password" class="col-md-4 col-form-label text-md-right">Enter your password</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="password" class="form-control" name="Password" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="PasswordConfirm" class="col-md-4 col-form-label text-md-right">Re-enter your password</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="password" class="form-control" name="PasswordConfirm" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,25 +1,45 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
 @using MentorIdentity2.ViewModel
 
 @model LoginViewModel
 @{
-
 }
-<form asp-action="Login" method="post">
-    <div>
-        <label>Email</label>
-        <input name="Email" />
+<main class="login-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Login</div>
+                    <div class="card-body">
+                        <form asp-action="Login" asp-controller="Account" method="post">
+                            <div class="form-group row">
+                                <label for="Email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="email_address" class="form-control" name="Email" required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="password" class="form-control" name="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="RememberMe"> Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <label>Password</label>
-        <input name="Password" />
-    </div>
-
-    <div>
-        <label>Remmber me?</label>
-        <input name="RememberMe" type="checkbox" />
-    </div>
-
-    <button type="submit" class="btn btn-primary"> Login </button>
-</form>
+</main>

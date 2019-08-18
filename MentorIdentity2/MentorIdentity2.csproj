@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="bootstrap" Version="4.3.1" />
+    <PackageReference Include="Bower" Version="1.3.11" />
     <PackageReference Include="MailKit" Version="2.1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -20,6 +21,11 @@
     <ProjectReference Include="..\MentorIdentity2.BLL\MentorIdentity2.BLL.csproj" />
     <ProjectReference Include="..\MentorIdentity2.DAL\MentorIdentity2.DAL.csproj" />
     <ProjectReference Include="..\MentorIdentity2.DTO\MentorIdentity2.DTO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
